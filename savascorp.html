@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SavasCorp - Leading the future of aerospace technology and space exploration with cutting-edge innovation.">
+    <meta property="og:title" content="SavasCorp - Aerospace Innovation">
+    <meta property="og:description" content="Leading the future of aerospace technology and space exploration.">
+    <meta property="og:type" content="website">
+    <title>SavasCorp - Aerospace Innovation</title>
+    
+    <style>
+        /* ===================================
+           HOW TO CUSTOMIZE THIS PAGE:
+           
+           1. Brand Name: Search and replace "SavasCorp" throughout
+           2. Colors: Edit CSS variables in :root section below
+           3. Images: Replace image URLs in the HTML sections
+           4. Content: Edit text directly in HTML sections
+           5. Fonts: Change font-family in body styles
+           
+           The page is fully self-contained and works offline.
+           =================================== */
+        
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            /* Minimalist Professional Colors */
+            --bg-primary: #000000;
+            --bg-secondary: #0a0a0a;
+            --bg-overlay: rgba(0, 0, 0, 0.6);
+            --text-primary: #FFFFFF;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+            --text-muted: #A0A0A0;
+            --border-subtle: rgba(255, 255, 255, 0.1);
+            --border-medium: rgba(255, 255, 255, 0.2);
+            --accent: #FFFFFF;
+            --accent-hover: rgba(255, 255, 255, 0.1);
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+            font-weight: 500;
+        }
+        
+        /* Accessibility - Respect reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+        
+        /* Navigation */
+        .nav-header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: transparent;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-header.scrolled {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav-container {
+            max-width: 100%;
+            padding: 20px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: 0;
+            text-transform: uppercase;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--text-muted);
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 10px;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+        
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+        
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.pexels.com/photos/586067/pexels-photo-586067.jpeg');
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+        
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6));
+        }
+        
+        .particles-container {
+            display: none;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            max-width: 100%;
+            padding: 0 48px 120px;
+            opacity: 0;
+            animation: fadeInUp 1.2s ease forwards 0.3s;
+            width: 100%;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero-content h1 {
+            font-size: 64px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 32px;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+        
+        .hero-content p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 0;
+            font-weight: 500;
+            display: none;
+        }
+        
+        .hero-cta {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 48px;
+        }
+        
+        /* Buttons */
+        .btn-primary {
+            background: var(--accent);
+            color: #000000;
+            border: 2px solid var(--accent);
+            border-radius: 0;
+            padding: 16px 40px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--accent);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+            border-radius: 0;
+            padding: 16px 40px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn-secondary:hover {
+            background: var(--accent);
+            color: #000000;
+        }
+        
+        /* Sections */
+        section {
+            padding: 0;
+            max-width: 100%;
+            margin: 0;
+        }
+        
+        .section-title {
+            font-size: 48px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 0;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+        
+        /* About Section */
+        .about {
+            background: var(--bg-primary);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 48px;
+        }
+        
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 28px;
+            color: var(--text-primary);
+            line-height: 1.4;
+            font-weight: 500;
+        }
+        
+        .features-grid {
+            display: none;
+        }
+        
+        /* Products Section */
+        .products {
+            background: var(--bg-primary);
+            padding: 0;
+        }
+        
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            margin: 0;
+        }
+        
+        .carousel-wrapper {
+            display: flex;
+            transition: transform 0.5s ease;
+            gap: 0;
+        }
+        
+        .product-card {
+            min-width: 100%;
+            background: var(--bg-primary);
+            border: none;
+            overflow: hidden;
+            transition: none;
+            position: relative;
+            height: 100vh;
+        }
+        
+        .product-card:hover {
+            border-color: transparent;
+            transform: none;
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        
+        .product-content {
+            padding: 0 48px 120px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 10;
+            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.8));
+            padding-top: 200px;
+        }
+        
+        .product-content h3 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+        
+        .product-content p {
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            line-height: 1.6;
+            font-size: 16px;
+            max-width: 600px;
+        }
+        
+        .carousel-controls {
+            position: absolute;
+            bottom: 48px;
+            right: 48px;
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            z-index: 20;
+        }
+        
+        .carousel-btn {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--text-primary);
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        
+        .carousel-btn:hover {
+            background: var(--accent);
+            color: #000000;
+        }
+        
+        /* Timeline Section */
+        .timeline {
+            background: var(--bg-primary);
+            padding: 100px 48px;
+            display: none;
+        }
+        
+        .timeline-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: var(--border-subtle);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 80px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: auto;
+            text-align: left;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-right: auto;
+            text-align: right;
+        }
+        
+        .timeline-content {
+            width: 45%;
+            padding: 30px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-subtle);
+            position: relative;
+        }
+        
+        .timeline-date {
+            display: inline-block;
+            background: var(--brand-primary);
+            color: #000000;
+            padding: 8px 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        
+        .timeline-content h3 {
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+        
+        .timeline-content p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        .timeline-marker {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--brand-primary);
+            border-radius: 50%;
+            z-index: 10;
+        }
+        
+        /* Gallery Section */
+        .gallery {
+            background: var(--bg-primary);
+            padding: 0;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            aspect-ratio: 16/9;
+            opacity: 1;
+            transform: scale(1);
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        
+        .gallery-overlay-text {
+            color: var(--text-primary);
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .lightbox.active {
+            display: flex;
+        }
+        
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            font-size: 40px;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .lightbox-close:hover {
+            color: var(--brand-primary);
+        }
+        
+        /* Contact Section */
+        .contact {
+            background: var(--bg-primary);
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            padding: 100px 48px;
+        }
+        
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .form-group {
+            margin-bottom: 24px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            background: transparent;
+            border: 1px solid var(--border-subtle);
+            color: var(--text-primary);
+            font-size: 16px;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .form-error {
+            color: #ff4444;
+            font-size: 12px;
+            margin-top: 8px;
+            display: none;
+        }
+        
+        .form-group.error .form-error {
+            display: block;
+        }
+        
+        .form-group.error input,
+        .form-group.error textarea {
+            border-color: #ff4444;
+        }
+        
+        .form-success {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--accent);
+            padding: 16px;
+            text-align: center;
+            margin-top: 24px;
+            display: none;
+        }
+        
+        .form-success.active {
+            display: block;
+        }
+        
+        .form-success p {
+            color: var(--text-primary);
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--bg-primary);
+            border-top: 1px solid var(--border-subtle);
+            padding: 48px;
+        }
+        
+        .footer-content {
+            max-width: 100%;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 60px;
+            margin-bottom: 48px;
+        }
+        
+        .footer-section h4 {
+            font-size: 12px;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+        
+        .footer-section p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-section a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 14px;
+        }
+        
+        .footer-section a:hover {
+            color: var(--text-primary);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 32px;
+            border-top: 1px solid var(--border-subtle);
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+        
+        .footer-bottom a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+        
+        .footer-bottom a:hover {
+            color: var(--text-primary);
+        }
+        
+        /* Spline Container */
+        .spline-container {
+            width: 100%;
+            height: 600px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 72px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 72px);
+                background: rgba(0, 0, 0, 0.98);
+                flex-direction: column;
+                padding: 48px 24px;
+                transition: left 0.3s ease;
+                align-items: flex-start;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .nav-container {
+                padding: 20px 24px;
+            }
+            
+            .hero-content {
+                padding: 0 24px 80px;
+            }
+            
+            .hero-content h1 {
+                font-size: 36px;
+            }
+            
+            .hero-content p {
+                font-size: 16px;
+            }
+            
+            .section-title {
+                font-size: 32px;
+            }
+            
+            .about {
+                padding: 80px 24px;
+            }
+            
+            .about-content {
+                font-size: 20px;
+            }
+            
+            .product-card {
+                min-width: 100%;
+            }
+            
+            .product-content {
+                padding: 0 24px 80px;
+                padding-top: 150px;
+            }
+            
+            .product-content h3 {
+                font-size: 32px;
+            }
+            
+            .carousel-controls {
+                bottom: 24px;
+                right: 24px;
+            }
+            
+            .carousel-btn {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact {
+                padding: 80px 24px;
+            }
+            
+            .footer {
+                padding: 48px 24px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav-header" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">SAVASCORP</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#products">Vehicles</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="particles-container" id="particles"></div>
+        <div class="hero-content">
+            <h1>Starship Landing</h1>
+            <div class="hero-cta">
+                <a href="#products" class="btn-secondary">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-content">
+            <p>SavasCorp is pioneering revolutionary spacecraft and launch systems to enable human life on Mars and beyond. Our reusable rocket technology reduces the cost of space access while increasing reliability.</p>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="carousel-container">
+            <div class="carousel-wrapper" id="carousel">
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1650820043586-216cdc8257a6?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njl8MHwxfHNlYXJjaHwxfHxzcGFjZWNyYWZ0JTIwcm9ja2V0c3xlbnwwfHx8fDE3NjE0MTcwMzR8MA&ixlib=rb-4.1.0&q=85" alt="Titan-X Heavy Launch Vehicle" class="product-image" loading="lazy">
+                    <div class="product-content">
+                        <h3>Titan-X</h3>
+                        <p>Our most powerful rocket. Capable of lifting over 100 tons to orbit and designed for missions to Mars and beyond.</p>
+                        <a href="#contact" class="btn-secondary">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1718037324508-c2a0a889d6db?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njl8MHwxfHNlYXJjaHwyfHxzcGFjZWNyYWZ0JTIwcm9ja2V0c3xlbnwwfHx8fDE3NjE0MTcwMzR8MA&ixlib=rb-4.1.0&q=85" alt="Nova Crew Capsule" class="product-image" loading="lazy">
+                    <div class="product-content">
+                        <h3>Dragon Capsule</h3>
+                        <p>Crew and cargo transport to the International Space Station and beyond. Fully autonomous docking and landing capabilities.</p>
+                        <a href="#contact" class="btn-secondary">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1730110987360-513bb7f20427?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njl8MHwxfHNlYXJjaHwzfHxzcGFjZWNyYWZ0JTIwcm9ja2V0c3xlbnwwfHx8fDE3NjE0MTcwMzR8MA&ixlib=rb-4.1.0&q=85" alt="Falcon Orbital Shuttle" class="product-image" loading="lazy">
+                    <div class="product-content">
+                        <h3>Starship</h3>
+                        <p>Fully reusable transportation system designed to carry crew and cargo to Earth orbit, the Moon, Mars and beyond.</p>
+                        <a href="#contact" class="btn-secondary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="carousel-controls">
+                <button class="carousel-btn" id="prevBtn" aria-label="Previous">&lt;</button>
+                <button class="carousel-btn" id="nextBtn" aria-label="Next">&gt;</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section - Hidden -->
+    <section class="timeline" id="missions" style="display: none;">
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <h2 class="section-title">Media Gallery</h2>
+        
+        <div class="gallery-grid">
+            <div class="gallery-item" data-src="https://images.unsplash.com/photo-1526666923127-b2970f64b422?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzd8MHwxfHNlYXJjaHwxfHxzcGFjZSUyMHRlY2hub2xvZ3l8ZW58MHx8fHwxNzYxMzE4MjUyfDA&ixlib=rb-4.1.0&q=85">
+                <img src="https://images.unsplash.com/photo-1526666923127-b2970f64b422?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzd8MHwxfHNlYXJjaHwxfHxzcGFjZSUyMHRlY2hub2xvZ3l8ZW58MHx8fHwxNzYxMzE4MjUyfDA&ixlib=rb-4.1.0&q=85" alt="Ground Station" loading="lazy">
+                <div class="gallery-overlay">
+                    <span class="gallery-overlay-text">View Image</span>
+                </div>
+            </div>
+            
+            <div class="gallery-item" data-src="https://images.unsplash.com/photo-1447433865958-f402f562b843?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzd8MHwxfHNlYXJjaHwyfHxzcGFjZSUyMHRlY2hub2xvZ3l8ZW58MHx8fHwxNzYxMzE4MjUyfDA&ixlib=rb-4.1.0&q=85">
+                <img src="https://images.unsplash.com/photo-1447433865958-f402f562b843?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzd8MHwxfHNlYXJjaHwyfHxzcGFjZSUyMHRlY2hub2xvZ3l8ZW58MHx8fHwxNzYxMzE4MjUyfDA&ixlib=rb-4.1.0&q=85" alt="Satellite Deployment" loading="lazy">
+                <div class="gallery-overlay">
+                    <span class="gallery-overlay-text">View Image</span>
+                </div>
+            </div>
+            
+            <div class="gallery-item" data-src="https://images.unsplash.com/photo-1446776877081-d282a0f896e2?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzd8MHwxfHNlYXJjaHwzfHxzcGFjZSUyMHRlY2hub2xvZ3l8ZW58MHx8fHwxNzYxMzE4MjUyfDA&ixlib=rb-4.1.0&q=85">
+                <img src="https://images.unsplash.com/photo-1446776877081-d282a0f896e2?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzd8MHwxfHNlYXJjaHwzfHxzcGFjZSUyMHRlY2hub2xvZ3l8ZW58MHx8fHwxNzYxMzE4MjUyfDA&ixlib=rb-4.1.0&q=85" alt="Space Station" loading="lazy">
+                <div class="gallery-overlay">
+                    <span class="gallery-overlay-text">View Image</span>
+                </div>
+            </div>
+            
+            <div class="gallery-item" data-src="https://images.unsplash.com/photo-1518364538800-6bae3c2ea0f2?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzd8MHwxfHNlYXJjaHw0fHxzcGFjZSUyMHRlY2hub2xvZ3l8ZW58MHx8fHwxNzYxMzE4MjUyfDA&ixlib=rb-4.1.0&q=85">
+                <img src="https://images.unsplash.com/photo-1518364538800-6bae3c2ea0f2?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzd8MHwxfHNlYXJjaHw0fHxzcGFjZSUyMHRlY2hub2xvZ3l8ZW58MHx8fHwxNzYxMzE4MjUyfDA&ixlib=rb-4.1.0&q=85" alt="Launch Sequence" loading="lazy">
+                <div class="gallery-overlay">
+                    <span class="gallery-overlay-text">View Image</span>
+                </div>
+            </div>
+            
+            <div class="gallery-item" data-src="https://images.pexels.com/photos/2156/sky-earth-space-working.jpg">
+                <img src="https://images.pexels.com/photos/2156/sky-earth-space-working.jpg" alt="Astronaut Mission" loading="lazy">
+                <div class="gallery-overlay">
+                    <span class="gallery-overlay-text">View Image</span>
+                </div>
+            </div>
+            
+            <div class="gallery-item" data-src="https://images.pexels.com/photos/41006/satellite-soyuz-spaceship-space-station-41006.jpeg">
+                <img src="https://images.pexels.com/photos/41006/satellite-soyuz-spaceship-space-station-41006.jpeg" alt="Orbital Operations" loading="lazy">
+                <div class="gallery-overlay">
+                    <span class="gallery-overlay-text">View Image</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="contact-content">
+            <h2 class="section-title">Contact</h2>
+            <form id="contactForm" style="margin-top: 48px;">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required aria-required="true">
+                    <span class="form-error">Please enter your name</span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required aria-required="true">
+                    <span class="form-error">Please enter a valid email address</span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required aria-required="true"></textarea>
+                    <span class="form-error">Please enter your message</span>
+                </div>
+                
+                <button type="submit" class="btn-primary">Send</button>
+            </form>
+            
+            <div class="form-success" id="formSuccess">
+                <p>Thank you for your message. We'll be in touch soon.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>SAVASCORP</h4>
+                <p>Making life multiplanetary.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>VEHICLES</h4>
+                <ul>
+                    <li><a href="#products">Titan-X</a></li>
+                    <li><a href="#products">Dragon</a></li>
+                    <li><a href="#products">Starship</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>COMPANY</h4>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Careers</a></li>
+                    <li><a href="#contact">Updates</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>RESOURCES</h4>
+                <ul>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#">Privacy</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 SavasCorp</p>
+        </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" id="lightboxClose">&times;</span>
+        <img id="lightboxImg" src="" alt="Gallery image">
+    </div>
+
+    <script>
+        // Navigation scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Particle animation
+        const particlesContainer = document.getElementById('particles');
+        const particleCount = 50;
+        
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 20 + 's';
+            particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+            particlesContainer.appendChild(particle);
+        }
+
+        // Carousel functionality
+        const carousel = document.getElementById('carousel');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        let currentIndex = 0;
+        const cards = document.querySelectorAll('.product-card');
+        const totalCards = cards.length;
+        
+        function updateCarousel() {
+            const cardWidth = cards[0].offsetWidth + 30; // card width + gap
+            carousel.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+        }
+        
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + totalCards) % totalCards;
+            updateCarousel();
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % totalCards;
+            updateCarousel();
+        });
+
+        // Keyboard navigation for carousel
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                prevBtn.click();
+            } else if (e.key === 'ArrowRight') {
+                nextBtn.click();
+            }
+        });
+
+        // Touch swipe for carousel
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        carousel.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+        
+        carousel.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            if (touchStartX - touchEndX > 50) {
+                nextBtn.click();
+            } else if (touchEndX - touchStartX > 50) {
+                prevBtn.click();
+            }
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements
+        document.querySelectorAll('.feature-card, .timeline-item, .gallery-item').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Gallery lightbox
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxClose = document.getElementById('lightboxClose');
+        
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const imgSrc = item.getAttribute('data-src');
+                lightboxImg.src = imgSrc;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+        
+        lightboxClose.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+        
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Form validation and submission
+        const contactForm = document.getElementById('contactForm');
+        const formSuccess = document.getElementById('formSuccess');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Clear previous errors
+            document.querySelectorAll('.form-group').forEach(group => {
+                group.classList.remove('error');
+            });
+            
+            let isValid = true;
+            
+            // Validate name
+            const name = document.getElementById('name');
+            if (name.value.trim() === '') {
+                name.closest('.form-group').classList.add('error');
+                isValid = false;
+            }
+            
+            // Validate email
+            const email = document.getElementById('email');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email.value.trim())) {
+                email.closest('.form-group').classList.add('error');
+                isValid = false;
+            }
+            
+            // Validate message
+            const message = document.getElementById('message');
+            if (message.value.trim() === '') {
+                message.closest('.form-group').classList.add('error');
+                isValid = false;
+            }
+            
+            if (isValid) {
+                // Show success message
+                formSuccess.classList.add('active');
+                contactForm.reset();
+                
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    formSuccess.classList.remove('active');
+                }, 5000);
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+
+    <!-- Spline 3D Integration -->
+    <script type="module">
+        // Spline 3D Scene Integration
+        // Note: This is a placeholder for the Spline integration
+        // To add a custom Spline scene:
+        // 1. Go to https://spline.design/
+        // 2. Create or select your 3D scene
+        // 3. Export as web and get the embed code
+        // 4. Replace this section with the Spline Runtime script
+        
+        // Example Spline integration structure:
+        // <script type="module" src="https://unpkg.com/@splinetool/runtime@latest/build/runtime.js"></script>
+        // <spline-viewer url="YOUR_SPLINE_SCENE_URL.splinecode"></spline-viewer>
+        
+        console.log('Spline 3D scene ready for integration');
+        
+        // If you want to add a Spline scene, uncomment and modify:
+        /*
+        const splineScript = document.createElement('script');
+        splineScript.type = 'module';
+        splineScript.src = 'https://unpkg.com/@splinetool/runtime@latest/build/runtime.js';
+        document.head.appendChild(splineScript);
+        
+        splineScript.onload = () => {
+            const splineViewer = document.createElement('spline-viewer');
+            splineViewer.setAttribute('url', 'YOUR_SPLINE_SCENE_URL');
+            splineViewer.style.width = '100%';
+            splineViewer.style.height = '600px';
+            // Insert the viewer where you want it, e.g.:
+            // document.querySelector('.about').appendChild(splineViewer);
+        };
+        */
+    </script>
+
+</body>
+</html>
